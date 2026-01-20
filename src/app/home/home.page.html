@@ -6,24 +6,34 @@
 
 <ion-content class="ion-padding">
 
+  <!-- Selector de ubicación -->
   <ion-item>
     <ion-label position="stacked">Ubicación</ion-label>
-    <ion-select placeholder="Selecciona una opción">
-      <ion-select-option value="current">Ubicación actual</ion-select-option>
-      <ion-select-option value="city">Por ciudad</ion-select-option>
+    <ion-select placeholder="Selecciona una opción" [(ngModel)]="locationType">
+      <ion-select-option value="current">
+        Ubicación actual
+      </ion-select-option>
+      <ion-select-option value="city">
+        Por ciudad
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
+  <!-- Campo ciudad solo si se elige "city" -->
+  @if (locationType === 'city') {
   <ion-item>
     <ion-label position="stacked">Ciudad</ion-label>
-    <ion-input placeholder="Ej: Madrid"></ion-input>
+    <ion-input placeholder="Ej: Madrid" [(ngModel)]="cityName">
+    </ion-input>
   </ion-item>
+  }
 
-  <ion-button expand="block" color="primary">
+  <!-- Botones -->
+  <ion-button expand="block" color="primary" (click)="getCurrentWeather()">
     Temperatura actual
   </ion-button>
 
-  <ion-button expand="block" color="secondary">
+  <ion-button expand="block" color="secondary" (click)="getForecast()">
     Hoy + próximos 4 días
   </ion-button>
 
