@@ -28,6 +28,14 @@
   </ion-item>
   }
 
+  @if (showFormError) {
+  <ion-text color="danger">
+    <p>
+      Por favor, selecciona una ubicación válida y rellena la ciudad si es necesario.
+    </p>
+  </ion-text>
+}
+
   <!-- Botones -->
   <ion-button expand="block" color="primary" (click)="getCurrentWeather()">
     Temperatura actual
