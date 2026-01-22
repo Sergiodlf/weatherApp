@@ -17,7 +17,7 @@
   <!-- Selector de ubicación -->
   <ion-item>
     <ion-label position="stacked">{{ 'FORM.LOCATION' | translate }}</ion-label>
-    <ion-select placeholder="Selecciona una opción" [(ngModel)]="locationType" (ionChange)="onLocationTypeChange()">
+    <ion-select placeholder="{{'FORM.SELECT_OPTION' | translate}}" [(ngModel)]="locationType" (ionChange)="onLocationTypeChange()">
       <ion-select-option value="current">
         {{ 'FORM.CURRENT_LOCATION' | translate }}
       </ion-select-option>
