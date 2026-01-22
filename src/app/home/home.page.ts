@@ -11,7 +11,7 @@ import {
   IonInput,
   IonButton,
   IonText,
-  IonButtons
+  IonButtons,
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { Weather } from '../services/weather';
@@ -50,10 +50,10 @@ export class HomePage {
 
   constructor(
     private appComponent: AppComponent,
-    private weatherService: Weather,
     private router: Router,
   ) {}
 
+  // Validar formulario
   isFormValid(): boolean {
     if (!this.locationType) {
       return false;
@@ -66,6 +66,7 @@ export class HomePage {
     return true;
   }
 
+  // Obtener clima actual en /results
   getCurrentWeather() {
     this.sinUbicacion = false;
 
@@ -93,7 +94,6 @@ export class HomePage {
               mode: 'location',
               lat: position.coords.latitude,
               lon: position.coords.longitude,
-              city: ' tu ubicación actual',
             },
           });
         },
@@ -104,6 +104,7 @@ export class HomePage {
     }
   }
 
+  // Obtener pronóstico en /results
   getForecast() {
     this.sinUbicacion = false;
 
@@ -131,7 +132,6 @@ export class HomePage {
               mode: 'location',
               lat: position.coords.latitude,
               lon: position.coords.longitude,
-              city: ' tu ubicación actual',
             },
           });
         },
@@ -142,6 +142,7 @@ export class HomePage {
     }
   }
 
+  // Limpiar mensajes de error al cambiar opción de ubicación
   onLocationTypeChange() {
     this.showFormError = false;
     this.sinUbicacion = false;
@@ -152,6 +153,7 @@ export class HomePage {
     }
   }
 
+  // Cambiar idioma
   changeLanguage(lang: 'es' | 'en') {
     this.appComponent.loadLanguage(lang);
   }

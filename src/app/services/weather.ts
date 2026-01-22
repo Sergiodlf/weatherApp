@@ -32,6 +32,7 @@ export class Weather {
   }
 
   // ---------- PUBLIC ----------
+  // Obtener información de tiempo actual por ciudad
   getCurrentWeatherByCity(city: string): Observable<any> {
     return this.getCoordinatesByCity(city).pipe(
       switchMap((geo) => {
@@ -51,6 +52,7 @@ export class Weather {
     );
   }
 
+  // Obtener pronóstico por ciudad
   getForecastByCity(city: string): Observable<any[]> {
     return this.getCoordinatesByCity(city).pipe(
       switchMap((geo) => {
@@ -73,10 +75,12 @@ export class Weather {
     );
   }
 
+  // Obtener información de tiempo actual por coordenadas
   getCurrentWeatherByLocation(lat: number, lon: number) {
     return this.getCurrent(lat, lon);
   }
 
+  // Obtener pronóstico por coordenadas
   getForecastByLocation(lat: number, lon: number) {
     return this.getForecast(lat, lon);
   }

@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{ 'APP_TITLE' | translate }}</ion-title>
+    <!-- Seleccionar idioma -->
     <ion-buttons slot="end">
       <ion-select value="es" interface="popover" (ionChange)="changeLanguage($event.detail.value)">
         <ion-select-option value="es">ES</ion-select-option>
@@ -35,6 +36,7 @@
   </ion-item>
   }
 
+  <!-- Mensajes de error -->
   @if (showFormError) {
   <ion-text color="danger">
     <p>

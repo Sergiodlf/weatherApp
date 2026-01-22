@@ -15,6 +15,7 @@
 
 <ion-content class="ion-padding">
 
+  <!-- Card temperatura actual -->
   @if (type === 'current' && currentWeather) {
   <ion-card>
     <ion-card-header>
@@ -31,6 +32,7 @@
   </ion-card>
   }
 
+  <!-- Cards pronóstico -->
   @if (type === 'forecast' && forecast.length > 0) {
   <ion-card>
     <ion-card-header>
@@ -57,6 +59,15 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+  }
+
+  <!-- Mensaje de error -->
+  @if (!currentWeather && forecast.length === 0) {
+  <ion-text color="danger">
+    <p>
+      {{ 'ERRORS.NO_LOCATION' | translate }}
+    </p>
+  </ion-text>
   }
 
 </ion-content>

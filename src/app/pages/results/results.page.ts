@@ -16,6 +16,7 @@ import {
   IonThumbnail,
   IonBackButton,
   IonButtons,
+  IonText,
 } from '@ionic/angular/standalone';
 import { Weather } from '../../services/weather';
 import { TranslateModule } from '@ngx-translate/core';
@@ -43,6 +44,7 @@ import { TranslateModule } from '@ngx-translate/core';
     IonBackButton,
     IonButtons,
     TranslateModule,
+    IonText,
   ],
 })
 export class ResultsPage {
@@ -64,6 +66,7 @@ export class ResultsPage {
     this.lon = nav.lon;
   }
 
+  // Cargar datos al entrar en la página
   ionViewWillEnter() {
     if (this.type === 'current') {
       this.loadCurrent();
@@ -72,6 +75,7 @@ export class ResultsPage {
     }
   }
 
+  // Cargar información actual
   loadCurrent() {
     if (this.mode === 'city') {
       this.weatherService
@@ -93,6 +97,7 @@ export class ResultsPage {
     }
   }
 
+  // Cargar pronóstico
   loadForecast() {
     if (this.mode === 'city') {
       this.weatherService

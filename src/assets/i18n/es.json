@@ -14,7 +14,7 @@
 
   "ERRORS": {
     "FORM_INVALID": "Por favor, selecciona una ubicación válida y rellena la ciudad si es necesario.",
-    "NO_LOCATION": "No se pudo obtener la ubicación actual."
+    "NO_LOCATION": "No se pudo obtener la ubicación."
   },
 
   "RESULTS": {
