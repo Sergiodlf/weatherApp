@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { WeatherData } from '../models/weather';
 import { Observable, switchMap, map } from 'rxjs';
 
 @Injectable({
@@ -72,5 +71,13 @@ export class Weather {
         })),
       ),
     );
+  }
+
+  getCurrentWeatherByLocation(lat: number, lon: number) {
+    return this.getCurrent(lat, lon);
+  }
+
+  getForecastByLocation(lat: number, lon: number) {
+    return this.getForecast(lat, lon);
   }
 }
