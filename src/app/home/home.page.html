@@ -1,6 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Tiempo</ion-title>
+    <ion-title>{{ 'APP_TITLE' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-select value="es" interface="popover" (ionChange)="changeLanguage($event.detail.value)">
+        <ion-select-option value="es">ES</ion-select-option>
+        <ion-select-option value="en">EN</ion-select-option>
+      </ion-select>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -8,13 +15,13 @@
 
   <!-- Selector de ubicación -->
   <ion-item>
-    <ion-label position="stacked">Ubicación</ion-label>
+    <ion-label position="stacked">{{ 'FORM.LOCATION' | translate }}</ion-label>
     <ion-select placeholder="Selecciona una opción" [(ngModel)]="locationType" (ionChange)="onLocationTypeChange()">
       <ion-select-option value="current">
-        Ubicación actual
+        {{ 'FORM.CURRENT_LOCATION' | translate }}
       </ion-select-option>
       <ion-select-option value="city">
-        Por ciudad
+        {{ 'FORM.BY_CITY' | translate }}
       </ion-select-option>
     </ion-select>
   </ion-item>
@@ -22,8 +29,8 @@
   <!-- Campo ciudad solo si se elige "city" -->
   @if (locationType === 'city') {
   <ion-item>
-    <ion-label position="stacked">Ciudad</ion-label>
-    <ion-input placeholder="Ej: Pamplona" [(ngModel)]="cityName">
+    <ion-label position="stacked">{{ 'FORM.CITY' | translate }}</ion-label>
+    <ion-input placeholder="{{ 'FORM.CITY_PLACEHOLDER' | translate }}" [(ngModel)]="cityName">
     </ion-input>
   </ion-item>
   }
@@ -31,25 +38,25 @@
   @if (showFormError) {
   <ion-text color="danger">
     <p>
-      Por favor, selecciona una ubicación válida y rellena la ciudad si es necesario.
+      {{ 'ERRORS.FORM_INVALID' | translate }}
     </p>
   </ion-text>
   }
   @if (sinUbicacion){
-    <ion-text color="danger">
+  <ion-text color="danger">
     <p>
-      No se pudo obtener la ubicación actual.
+      {{ 'ERRORS.NO_LOCATION' | translate }}
     </p>
   </ion-text>
   }
 
   <!-- Botones -->
   <ion-button expand="block" color="primary" (click)="getCurrentWeather()">
-    Temperatura actual
+    {{ 'FORM.BTN_CURRENT' | translate }}
   </ion-button>
 
   <ion-button expand="block" color="secondary" (click)="getForecast()">
-    Hoy + próximos 4 días
+    {{ 'FORM.BTN_FORECAST' | translate }}
   </ion-button>
 
 </ion-content>

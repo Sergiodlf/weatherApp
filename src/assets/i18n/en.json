@@ -1,0 +1,30 @@
+{
+  "APP_TITLE": "Weather",
+
+  "FORM": {
+    "LOCATION": "Location",
+    "SELECT_OPTION": "Select an option",
+    "CURRENT_LOCATION": "Current location",
+    "BY_CITY": "By city",
+    "CITY": "City",
+    "CITY_PLACEHOLDER": "e.g. London",
+    "BTN_CURRENT": "Current temperature",
+    "BTN_FORECAST": "Today + next 4 days"
+  },
+
+  "ERRORS": {
+    "FORM_INVALID": "Please select a valid location and fill in the city if necessary.",
+    "NO_LOCATION": "Could not get current location."
+  },
+
+  "RESULTS": {
+    "TITLE_CITY": "Weather in {{city}}",
+    "TITLE_LOCATION": "Weather at your current location",
+    "CURRENT_TITLE": "Current weather",
+    "FORECAST_TITLE": "Forecast (today + next 4 days)",
+    "TEMP": "Temperature",
+    "WIND": "Wind",
+    "RAIN": "Rain",
+    "DESCRIPTION": "Condition"
+  }
+}

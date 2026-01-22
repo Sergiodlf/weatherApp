@@ -11,10 +11,13 @@ import {
   IonInput,
   IonButton,
   IonText,
+  IonButtons
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { Weather } from '../services/weather';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +35,9 @@ import { Router } from '@angular/router';
     IonInput,
     IonButton,
     IonText,
+    IonButtons,
     FormsModule,
+    TranslateModule,
   ],
 })
 export class HomePage {
@@ -44,6 +49,7 @@ export class HomePage {
   forecast: any[] = [];
 
   constructor(
+    private appComponent: AppComponent,
     private weatherService: Weather,
     private router: Router,
   ) {}
@@ -144,5 +150,9 @@ export class HomePage {
     if (this.locationType !== 'city') {
       this.cityName = '';
     }
+  }
+
+  changeLanguage(lang: 'es' | 'en') {
+    this.appComponent.loadLanguage(lang);
   }
 }

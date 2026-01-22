@@ -1,0 +1,30 @@
+{
+  "APP_TITLE": "Tiempo",
+
+  "FORM": {
+    "LOCATION": "Ubicación",
+    "SELECT_OPTION": "Selecciona una opción",
+    "CURRENT_LOCATION": "Ubicación actual",
+    "BY_CITY": "Por ciudad",
+    "CITY": "Ciudad",
+    "CITY_PLACEHOLDER": "Ej: Pamplona",
+    "BTN_CURRENT": "Temperatura actual",
+    "BTN_FORECAST": "Hoy + próximos 4 días"
+  },
+
+  "ERRORS": {
+    "FORM_INVALID": "Por favor, selecciona una ubicación válida y rellena la ciudad si es necesario.",
+    "NO_LOCATION": "No se pudo obtener la ubicación actual."
+  },
+
+  "RESULTS": {
+    "TITLE_CITY": "Tiempo en {{city}}",
+    "TITLE_LOCATION": "Tiempo en tu ubicación actual",
+    "CURRENT_TITLE": "Tiempo actual",
+    "FORECAST_TITLE": "Previsión (hoy + próximos 4 días)",
+    "TEMP": "Temperatura",
+    "WIND": "Viento",
+    "RAIN": "Precipitaciones",
+    "DESCRIPTION": "Estado"
+  }
+}

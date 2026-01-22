@@ -18,6 +18,7 @@ import {
   IonButtons,
 } from '@ionic/angular/standalone';
 import { Weather } from '../../services/weather';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-results',
@@ -41,6 +42,7 @@ import { Weather } from '../../services/weather';
     IonThumbnail,
     IonBackButton,
     IonButtons,
+    TranslateModule,
   ],
 })
 export class ResultsPage {
