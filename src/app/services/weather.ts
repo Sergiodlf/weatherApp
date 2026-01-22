@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { WeatherData } from '../models/weather';
+import { Observable, switchMap, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -32,59 +33,44 @@ export class Weather {
   }
 
   // ---------- PUBLIC ----------
-  getCurrentWeatherByCity(city: string) {
-    this.getCoordinatesByCity(city).subscribe({
-      next: (geo) => {
+  getCurrentWeatherByCity(city: string): Observable<any> {
+    return this.getCoordinatesByCity(city).pipe(
+      switchMap((geo) => {
         if (!geo.length) {
-          console.log('Ciudad no encontrada');
-          return;
+          throw new Error('Ciudad no encontrada');
         }
-
-        const { lat, lon, name } = geo[0];
-
-        this.getCurrent(lat, lon).subscribe({
-          next: (data) => {
-            const weather: WeatherData = {
-              date: new Date().toISOString(),
-              temp: data.main.temp,
-              wind: data.wind.speed,
-              rain: data.rain?.['1h'] ?? 0,
-              icon: data.weather[0].icon,
-              description: data.weather[0].description,
-            };
-
-            console.log('Tiempo actual:', weather);
-          },
-        });
-      },
-    });
+        const { lat, lon } = geo[0];
+        return this.getCurrent(lat, lon);
+      }),
+      map((data) => ({
+        temp: data.main.temp,
+        wind: data.wind.speed,
+        rain: data.rain?.['1h'] ?? 0,
+        icon: data.weather[0].icon,
+        description: data.weather[0].description,
+      })),
+    );
   }
 
-  getForecastByCity(city: string) {
-    this.getCoordinatesByCity(city).subscribe({
-      next: (geo) => {
+  getForecastByCity(city: string): Observable<any[]> {
+    return this.getCoordinatesByCity(city).pipe(
+      switchMap((geo) => {
         if (!geo.length) {
-          console.log('Ciudad no encontrada');
-          return;
+          throw new Error('Ciudad no encontrada');
         }
-
         const { lat, lon } = geo[0];
-
-        this.getForecast(lat, lon).subscribe({
-          next: (data) => {
-            const forecast: WeatherData[] = data.list.map((item: any) => ({
-              date: item.dt_txt,
-              temp: item.main.temp,
-              wind: item.wind.speed,
-              rain: item.rain?.['3h'] ?? 0,
-              icon: item.weather[0].icon,
-              description: item.weather[0].description,
-            }));
-
-            console.log('Forecast 5 días:', forecast);
-          },
-        });
-      },
-    });
+        return this.getForecast(lat, lon);
+      }),
+      map((data) =>
+        data.list.map((item: any) => ({
+          date: item.dt_txt,
+          temp: item.main.temp,
+          wind: item.wind.speed,
+          rain: item.rain?.['3h'] ?? 0,
+          icon: item.weather[0].icon,
+          description: item.weather[0].description,
+        })),
+      ),
+    );
   }
 }

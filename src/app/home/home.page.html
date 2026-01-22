@@ -23,7 +23,7 @@
   @if (locationType === 'city') {
   <ion-item>
     <ion-label position="stacked">Ciudad</ion-label>
-    <ion-input placeholder="Ej: Madrid" [(ngModel)]="cityName">
+    <ion-input placeholder="Ej: Pamplona" [(ngModel)]="cityName">
     </ion-input>
   </ion-item>
   }
@@ -34,7 +34,7 @@
       Por favor, selecciona una ubicación válida y rellena la ciudad si es necesario.
     </p>
   </ion-text>
-}
+  }
 
   <!-- Botones -->
   <ion-button expand="block" color="primary" (click)="getCurrentWeather()">

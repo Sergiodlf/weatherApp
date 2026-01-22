@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonButton, IonText } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonButton, IonText, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonThumbnail } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { Weather } from '../services/weather';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +15,16 @@ export class HomePage {
   locationType: string = '';
   cityName: string = '';
   showFormError: boolean = false;
+  currentWeather: any | null = null;
+  forecast: any[] = [];
 
-  constructor(private weatherService: Weather) {}
+
+  constructor(
+    private weatherService: Weather,
+    private router: Router
+  ) {}
+
+
 
   isFormValid(): boolean {
     if (!this.locationType) {
@@ -38,7 +47,10 @@ export class HomePage {
     this.showFormError = false;
 
     if (this.locationType === 'city') {
-      this.weatherService.getCurrentWeatherByCity(this.cityName);
+      this.router.navigate(['/results'], {
+      state: {
+      type: 'current',
+      city: this.cityName}});
     } else {
       // this.weatherService.getCurrentWeatherByLocation(40.7128, -74.0060); // Ejemplo de coordenadas
     }
@@ -53,7 +65,10 @@ export class HomePage {
     this.showFormError = false;
 
     if (this.locationType === 'city') {
-      this.weatherService.getForecastByCity(this.cityName);
+      this.router.navigate(['/results'], {
+        state: {
+        type: 'forecast',
+        city: this.cityName}});
     } else {
       // this.weatherService.getCurrentWeatherByLocation(40.7128, -74.0060); // Ejemplo de coordenadas
     }

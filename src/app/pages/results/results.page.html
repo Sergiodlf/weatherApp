@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tiempo en {{ city }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  @if (type === 'current' && currentWeather) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Tiempo actual</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <img
+          [src]="'https://openweathermap.org/img/wn/' + currentWeather.icon + '@2x.png'"
+        />
+        <p>Temperatura: {{ currentWeather.temp }} °C</p>
+        <p>Viento: {{ currentWeather.wind }} m/s</p>
+        <p>Precipitaciones: {{ currentWeather.rain }} mm</p>
+        <p>{{ currentWeather.description }}</p>
+      </ion-card-content>
+    </ion-card>
+  }
+
+  @if (type === 'forecast' && forecast.length > 0) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Previsión (hoy + próximos 4 días)</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          @for (item of forecast; track item.date) {
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img
+                  [src]="'https://openweathermap.org/img/wn/' + item.icon + '@2x.png'"
+                />
+              </ion-thumbnail>
+
+              <ion-label>
+                <h3>{{ item.date }}</h3>
+                <p>Temp: {{ item.temp }} °C</p>
+                <p>Viento: {{ item.wind }} m/s</p>
+                <p>Lluvia: {{ item.rain }} mm</p>
+                <p>{{ item.description }}</p>
+              </ion-label>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  }
+
+</ion-content>
